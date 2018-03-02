@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--CONTENT CONTAINER-->
+<!--===================================================-->
+<div id="content-container">
+
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+        <h1 class="page-header text-overflow">
+            {% if menu2 %}
+            {{ menu2.1 }}
+            {% else %}
+            {{ menu.1 }}
+            {% endif %}
+        </h1>
+
+        <!--Searchbox-->
+{#        <div class="searchbox">#}
+{#            <div class="input-group custom-search-form">#}
+{#                <input type="text" class="form-control" placeholder="Search..">#}
+{#                <span class="input-group-btn">#}
+{#                    <button class="text-muted" type="button"><i class="demo-pli-magnifi-glass"></i></button>#}
+{#                </span>#}
+{#            </div>#}
+{#        </div>#}
+
+    </div>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End page title-->
+
+
+    <!--Breadcrumb-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <ol class="breadcrumb">
+        <li><a href="{% url 'index' %}">总览</a></li>
+        {% if menu2 %}
+        <li><a href="#">{{ menu.1 }}</a></li>
+        <li class="active">{{ menu2.1 }}</li>
+        {% else %}
+        <li class="active"><a href="#">{{ menu.1 }}</a></li>
+        {% endif %}
+    </ol>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End breadcrumb-->
+
+
+    <!--Page content-->
+    <!--===================================================-->
+    <div id="page-content">
+        <h3 class="text-warning pad-btm bord-btm"><i class="ion-alert-circled"></i> 请接入应用数据！</h3>
+
+        <div class="row">
+            <div class="eq-height">
+                <div class="col-md-6 col-lg-4 eq-box-lg">
+                    本功能需要接入你的应用数据，请与管理员取得联系：lzyang121@qq.com
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--===================================================-->
+    <!--End page content-->
+
+
+</div>
+<!--===================================================-->
+<!--END CONTENT CONTAINER-->
+{% endblock %}
+
+{% block js %}
+
+
+<script>
+$(document).ready(function() {
+    $('#{{ menu.0 }}').addClass('active active-sub').children(
+        'a').attr('aria-expanded', 'true').siblings('ul').addClass('in');
+    {% if menu2 %}
+        $('#{{ menu2.0 }}').addClass('active-link');
+    {% endif %}
+})
+</script>
+{% endblock %}

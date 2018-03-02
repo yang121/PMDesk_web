@@ -1,0 +1,655 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--CONTENT CONTAINER-->
+<!--===================================================-->
+<div id="content-container">
+
+    <!--Page Title-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <div id="page-title">
+        <h1 class="page-header text-overflow">应用总览</h1>
+        <p class="text-muted">以下为示例数据</p>
+
+    </div>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--End page title-->
+
+
+    <!--Page content-->
+    <!--===================================================-->
+    <div id="page-content">
+
+        <div class="row">
+            <div class="eq-height">
+                <div class="col-md-6 col-lg-4 eq-box-lg">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-control panel-control-component">
+{#                                <span class="text-muted">Auto update</span>#}
+{#                                <input id="demo-auto-gauge" class="toggle-switch" type="checkbox">#}
+{#                                <label for="demo-auto-gauge" class="text-muted"></label>#}
+                            </div>
+                            <h3 class="panel-title">昨日新增</h3>
+                        </div>
+
+                        <!-- Gauge JS -->
+                        <!--===================================================-->
+                        <div class="panel-body">
+                            <div class="text-center">
+
+                                <!--Gauge placeholder-->
+                                <canvas id="acquisition" height="70" class="canvas-responsive"></canvas>
+
+                                <p class="h4">
+                                    <span id="acquisition-txt" class="label label-primary"></span>
+                                </p>
+                            </div>
+                        </div>
+                        <!--===================================================-->
+                        <!-- End Gauge JS -->
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 eq-box-lg">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-control panel-control-component">
+{#                                <span class="text-muted">Auto update</span>#}
+{#                                <input id="demo-auto-gauge" class="toggle-switch" type="checkbox">#}
+{#                                <label for="demo-auto-gauge" class="text-muted"></label>#}
+                            </div>
+                            <h3 class="panel-title">昨日活跃</h3>
+                        </div>
+
+                        <!-- Gauge JS -->
+                        <!--===================================================-->
+                        <div class="panel-body">
+                            <div class="text-center">
+
+                                <!--Gauge placeholder-->
+                                <canvas id="activation" height="70" class="canvas-responsive"></canvas>
+
+                                <p class="h4">
+                                    <span id="activation-txt" class="label label-primary"></span>
+                                </p>
+                            </div>
+                        </div>
+                        <!--===================================================-->
+                        <!-- End Gauge JS -->
+
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4 eq-box-lg">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">留存(30天)</h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <!--Morris Bar Chart placeholder -->
+                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                            <div id="retention"  style="height:11em"></div>
+                            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="text-main pad-btm bord-btm">活跃</h4>
+        <div class="row">
+            <div class="col-sm-6 col-lg-3">
+
+                <!--Sparkline Area Chart-->
+                <!--===================================================-->
+                <div class="panel panel-success panel-colorful">
+                    <div class="pad-all">
+                        <p class="text-lg text-semibold">月活</p>
+                    </div>
+                    <div class="pad-all text-center">
+                        <!--Placeholder-->
+                        <div id="month-activation"></div>
+                    </div>
+                </div>
+                <!--===================================================-->
+                <!--End Sparkline Area Chart-->
+
+            </div>
+            <div class="col-sm-6 col-lg-3">
+
+                <!--Sparkline Line Chart-->
+                <!--===================================================-->
+                <div class="panel panel-info panel-colorful">
+                    <div class="pad-all">
+                        <p class="text-lg text-semibold">月均活跃天数</p>
+                    </div>
+                    <div class="pad-all text-center">
+                        <!--Placeholder-->
+                        <div id="month-activation-days"></div>
+                    </div>
+                </div>
+                <!--===================================================-->
+                <!--End Sparkline Line Chart-->
+
+            </div>
+            <div class="col-sm-6 col-lg-3">
+
+                <!--Sparkline Bar Chart-->
+                <!--===================================================-->
+                <div class="panel panel-purple panel-colorful">
+                    <div class="pad-all">
+                        <p class="text-lg text-semibold">使用时长</p>
+                    </div>
+                    <div class="pad-all text-center">
+                        <!--Placeholder-->
+                        <div id="use-time-length" class="box-inline"></div>
+                    </div>
+                </div>
+                <!--===================================================-->
+                <!--End Sparkline Bar Chart-->
+
+            </div>
+            <div class="col-sm-6 col-lg-3">
+
+                <!--Sparkline Pie Chart-->
+                <!--===================================================-->
+                <div class="panel panel-danger panel-colorful">
+                    <div class="pad-all">
+                        <p class="text-lg text-semibold">活跃事件</p>
+                    </div>
+                    <div class="pad-btm text-center">
+                        <!--Placeholder-->
+                        <div id="activation-event" class="box-inline"></div>
+                    </div>
+                </div>
+                <!--===================================================-->
+                <!--End Sparkline Pie Chart-->
+
+            </div>
+        </div>
+
+        <h4 class="text-main pad-btm bord-btm">留存(30天)</h4>
+
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">新用户留存</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <!--Morris Bar Chart placeholder -->
+                        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                        <div id="new-user-retention" style="height:212px"></div>
+                        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">用户行为留存</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <!--Morris Donut Chart placeholder -->
+                        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                        <div id="event-retention" style="height:212px"></div>
+                        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--===================================================-->
+        <!-- End Morris Charts -->
+
+        <h4 class="text-main pad-btm bord-btm">自传播(30天)</h4>
+
+        <!-- Flot Charts -->
+        <!--===================================================-->
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">用户转发</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <!--Flot Line Chart placeholder-->
+                        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+                        <div id="refer" style="height:212px"></div>
+                        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--===================================================-->
+        <!-- End Flot Charts -->
+
+
+
+    </div>
+    <!--===================================================-->
+    <!--End page content-->
+
+
+</div>
+<!--===================================================-->
+<!--END CONTENT CONTAINER-->
+{% endblock %}
+
+{% block js %}
+<script>
+$(document).ready(function() {
+    // 新增
+    var opts = {
+    angle: 0.07, // The span of the gauge arc
+    lineWidth: 0.41, // The line thickness
+    radiusScale: 1, // Relative radius
+    pointer: {
+        length: 0.6, // // Relative to gauge radius
+        strokeWidth: 0.035, // The thickness
+        color: '#000000' // Fill color
+    },
+    limitMax: false,     // If false, max value increases automatically if value > maxValue
+    limitMin: false,     // If true, the min value of the gauge will be fixed
+    {#colorStart: '#6FADCF',   // Colors#}
+    {#colorStop: '#8FC0DA',    // just experiment with them#}
+    {#strokeColor: '#E0E0E0',  // to see which ones work best for you#}
+    generateGradient: true,
+    highDpiSupport: true,     // High resolution support
+    staticZones: [
+        {strokeStyle: "#fe7211", min: 0, max: 1000, height: 1.4},
+        {#{strokeStyle: "rgb(200,100,0)", min: 500, max: 1000, height: 1.2},#}
+        {strokeStyle: "#7ad689", min: 1000, max: 1500, height: 1},
+        {strokeStyle: "#128376", min: 1500, max: 2000, height: 0.8},
+        {strokeStyle: "#2d4859", min: 2000, max: 3000, height: 0.6}
+    ]
+};
+    var target = document.getElementById('acquisition'); // your canvas element
+    var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+    gauge.maxValue = 3000; // set max gauge value
+    gauge.animationSpeed = 32; // set animation speed (32 is default value)
+    gauge.set(1250); // set actual value
+    gauge.setTextField(document.getElementById("acquisition-txt"));
+
+    // 活跃
+    var opts2 = {
+        angle: 0.07, // The span of the gauge arc
+        lineWidth: 0.41, // The line thickness
+        radiusScale: 1, // Relative radius
+        pointer: {
+            length: 0.6, // // Relative to gauge radius
+            strokeWidth: 0.035, // The thickness
+            color: '#000000' // Fill color
+        },
+        limitMax: false,     // If false, max value increases automatically if value > maxValue
+        limitMin: false,     // If true, the min value of the gauge will be fixed
+        colorStart: '#6FADCF',   // Colors
+        colorStop: '#8FC0DA',    // just experiment with them
+        strokeColor: '#E0E0E0',  // to see which ones work best for you
+        generateGradient: true,
+        highDpiSupport: true,     // High resolution support
+        staticZones: [
+            {strokeStyle: "#fe7211", min: 0, max: 2000, height: 1.4},
+            {#{strokeStyle: "rgb(200,100,0)", min: 1000, max: 2000, height: 1.2},#}
+            {strokeStyle: "#7ad689", min: 2000, max: 5000, height: 1},
+            {strokeStyle: "#128376", min: 5000, max: 8000, height: 0.8},
+            {strokeStyle: "#2d4859", min: 8000, max: 10000, height: 0.6}
+        ]
+    };
+    var target2 = document.getElementById('activation'); // your canvas element
+    var gauge2 = new Gauge(target2).setOptions(opts2); // create sexy gauge!
+    gauge2.maxValue = 10000; // set max gauge value
+    gauge2.animationSpeed = 32; // set animation speed (32 is default value)
+    gauge2.set(6250); // set actual value
+    gauge2.setTextField(document.getElementById("activation-txt"));
+
+    // 留存
+    Morris.Bar({
+        element: 'retention',
+        data: [
+            { y: '1天留存', a: '100%'},
+            { y: '2天留存', a: '75%'},
+            { y: '3天留存', a: '40%'},
+            {#{ y: '4天', a: '39%'},#}
+            { y: '5天留存', a: '36%'},
+            { y: '6天留存', a: '20%'},
+            { y: '7天留存', a: '25%'},
+            { y: '8天留存', a: '18%'},
+            { y: '9天留存', a: '14%'},
+            { y: '10天留存', a: '6%'},
+            { y: '11天留存', a: '2%'},
+            { y: '12天留存', a: '1%'},
+            { y: '13天留存', a: '1%'},
+            { y: '14天留存', a: '1%'},
+            { y: '15天留存', a: '1%'}
+        ],
+        xkey: 'y',
+        postUnits: '%',
+        ykeys: ['a'],
+        labels: ['留存率'],
+        gridEnabled: false,
+        gridLineColor: 'transparent',
+        barColors: ['#177bbb'],
+        resize:true,
+        hideHover: 'auto',
+        tooltipSuffix: '%'
+        {#tooltipFormat: '\\{\\{a\\}\\}%(\{\{y\}\}天留存) '#}
+    });
+
+
+    var monthActivation = function() {
+        $("#month-activation").sparkline([957,1269,1223,1362,1473,1579,1276,1377,1273,1652,1257,1350], {
+            type: 'line',
+            width: '100%',
+            height: '40',
+            spotRadius: 5,
+            lineWidth: 1,
+            lineColor:'rgba(255,255,255,.85)',
+            fillColor: 'rgba(0,0,0,0.03)',
+            spotColor: 'rgba(255,255,255,.5)',
+            minSpotColor: 'rgba(255,255,255,.5)',
+            maxSpotColor: 'rgba(255,255,255,.5)',
+            highlightLineColor : '#ffffff',
+            highlightSpotColor: '#ffffff',
+            tooltipFormat: '\{\{y\}\} 人 (\{\{offset:offset\}\}) ',
+            resize:true,
+            tooltipValueLookups: {
+                'offset': {
+                    0: '1月',
+                    1: '2月',
+                    2: '3月',
+                    3: '4月',
+                    4: '5月',
+                    5: '6月',
+                    6: '7月',
+                    7: '8月',
+                    8: '9月',
+                    9: '10月',
+                    10: '11月',
+                    11: '12月'
+                }
+            }
+        });
+    };
+
+    var monthActivationDays = function(){
+        $("#month-activation-days").sparkline([
+            5.1,4.2,3.3,5.4,7.3,7.0,8.1,8.2,5.8,7.4,6.8,4.2
+        ],
+    {
+        type: 'line',
+        width: '100%',
+        height: '40',
+        spotRadius: 4,
+        lineWidth:1,
+        lineColor:'#ffffff',
+        fillColor: false,
+        minSpotColor :false,
+        maxSpotColor : false,
+        highlightLineColor : '#ffffff',
+        highlightSpotColor: '#ffffff',
+        spotColor:'#ffffff',
+        valueSpots : {
+            '0:': '#ffffff'
+        },
+        tooltipFormat: '\{\{y\}\} 天 (\{\{offset:offset\}\}) ',
+        tooltipValueLookups: {
+            'offset': {
+                0: '1月',
+                1: '2月',
+                2: '3月',
+                3: '4月',
+                4: '5月',
+                5: '6月',
+                6: '7月',
+                7: '8月',
+                8: '9月',
+                9: '10月',
+                10: '11月',
+                11: '12月'
+            }
+        }
+    });
+    };
+
+    var barEl = $("#use-time-length");
+    var barValues = [40,32,65,53,62,55,24,67,45,70,45,56,34,67,76,32,65,53,62,55,24,67,45,70,45,56,70,45,56,34];
+    var barValueCount = barValues.length;
+    var barSpacing = 1;
+    var useTimeLength = function(){
+        barEl.sparkline(barValues, {
+            type: 'bar',
+            height: 40,
+            barWidth: Math.round((barEl.parent().width() - ( barValueCount - 1 ) * barSpacing ) / barValueCount),
+            barSpacing: barSpacing,
+            zeroAxis: false,
+            tooltipFormat: '\{\{value\}\} 分钟 (\{\{offset:offset\}\})',
+            tooltipValueLookups: {
+                'offset': {
+                    0: '本月1日',
+                    1: '本月2日',
+                    2: '本月3日',
+                    3: '本月4日',
+                    4: '本月5日',
+                    5: '本月6日',
+                    6: '本月7日',
+                    7: '本月8日',
+                    8: '本月9日',
+                    9: '本月10日',
+                    10: '本月11日',
+                    11: '本月12日',
+                    12: '本月13日',
+                    13: '本月14日',
+                    14: '本月15日',
+                    15: '本月16日',
+                    16: '本月17日',
+                    17: '本月18日',
+                    18: '本月19日',
+                    19: '本月20日',
+                    20: '本月21日',
+                    21: '本月22日',
+                    22: '本月23日',
+                    23: '本月24日',
+                    24: '本月25日',
+                    25: '本月26日',
+                    26: '本月27日',
+                    27: '本月28日',
+                    28: '本月29日'
+                }
+            },
+            barColor: 'rgba(255,255,255,.7)'
+        });
+    };
+
+    $("#activation-event").sparkline([5, 12, 17 ,55], {
+        type: 'pie',
+        width: '55',
+        height: '55',
+        tooltipFormat: '\{\{offset:offset\}\} (\{\{percent.1\}\}%)',
+        tooltipValueLookups: {
+            'offset': {
+                0: '付款',
+                1: '收藏',
+                2: '加入购物车',
+                3: '搜索'
+            }
+        },
+        sliceColors: ['#2d4859','#fe7211','#7ad689','#128376']
+    });
+
+
+    Morris.Bar({
+        element: 'new-user-retention',
+        data: [
+            { x: '1天留存', a: '100%'},
+            { x: '2天留存', a: '75%'},
+            { x: '3天留存', a: '40%'},
+            {#{ y: '4天', a: '39%'},#}
+            { x: '5天留存', a: '36%'},
+            { x: '6天留存', a: '20%'},
+            { x: '7天留存', a: '25%'},
+            { x: '8天留存', a: '18%'},
+            { x: '9天留存', a: '14%'},
+            { x: '10天留存', a: '6%'},
+            { x: '11天留存', a: '2%'},
+            { x: '12天留存', a: '1%'},
+            { x: '13天留存', a: '1%'},
+            { x: '14天留存', a: '1%'},
+            { x: '15天留存', a: '1%'}
+        ],
+        xkey: 'x',
+        postUnits: '%',
+        {#xLabelFormat: function (x) { console.log(x);return x.toString(); },#}
+        ykeys: ['a'],
+        labels: ['留存率'],
+        gridEnabled: false,
+        gridLineColor: 'transparent',
+        barColors: ['#177bbb'],
+        resize:true,
+        hideHover: 'auto'
+    });
+
+    var eventRetentionData = [
+        {label: "搜索", value: 53},
+        {label: "加入购物车", value: 30},
+        {label: "付款", value: 21},
+        {label: "登录", value: 21},
+        {label: "收藏", value: 20}
+        ];
+    Morris.Donut({
+        element: 'event-retention',
+        data: eventRetentionData,
+        formatter: function (y, eventRetentionData) { return y + '%' },
+        colors: [
+            '#fe7211',
+            '#2d4859',
+            '#128376',
+            '#7ad689',
+            '#afd2f0'
+        ],
+        resize:true
+    });
+
+    // FLOT CHART
+    // =================================================================
+    // Require Flot Charts
+    // -----------------------------------------------------------------
+    // http://www.flotcharts.org/
+    // =================================================================
+
+    var referNum = [[1, 1700], [2, 1200], [3, 1090], [4, 1550], [5, 1700], [6, 1850], [7, 2736], [8, 3045], [9, 3779], [10, 4895], [11, 5209], [12, 5100]],
+    referRate = [[1, 456], [2, 589], [3, 354], [4, 558], [5, 254], [6, 656], [7, 124], [8, 523], [9, 256], [10, 987], [11, 854], [12, 965]];
+
+    var plot = $.plot("#refer", [
+            {
+                label: '转发量',
+                data: referNum,
+                lines: {
+                    show: true,
+                    lineWidth:2,
+                    fill: true,
+                    fillColor: {
+                        colors: [{opacity: 0.5}, {opacity: 0.5}]
+                    }
+                },
+                points: {
+                    show: true,
+                    radius: 4
+                }
+            },
+            {
+                label: '转发新增(7天)',
+                data: referRate,
+                lines: {
+                    show: true,
+                    lineWidth:2,
+                    fill: true,
+                    fillColor: {
+                        colors: [{opacity: 0.5}, {opacity: 0.5}]
+                    }
+                },
+                points: {
+                    show: true,
+                    radius: 4
+                }
+            }
+        ],{
+        series: {
+            lines: {
+                show: true
+            },
+            points: {
+                show: true
+            },
+            shadowSize: 0	// Drawing is faster without shadows
+        },
+        colors: ['#177bbb', '#177bbb'],
+        legend: {
+            show: true,
+            position: 'nw',
+            margin: [15, 0]
+        },
+        grid: {
+            borderWidth: 0,
+            hoverable: true,
+            clickable: true
+        },
+        yaxis: {
+            ticks: 4,
+            tickColor: '#eeeeee',
+        },
+        xaxis: {
+            ticks: 12,
+            tickColor: '#ffffff',
+            tickFormatter: function (v, axis) {
+                return v + "月";
+            }
+        }
+    });
+
+
+    // Flot tooltip
+    // =================================================================
+    $("<div id='demo-flot-tooltip'></div>").css({
+        position: "absolute",
+        display: "none",
+        padding: "10px",
+        color: "#fff",
+        "text-align":"right",
+        "background-color": "#1c1e21"
+    }).appendTo("body");
+
+
+    $("#refer").bind("plothover", function (event, pos, item) {
+
+        if (item) {
+            var x = item.datapoint[0].toFixed(2),  y = item.datapoint[1];
+            $("#demo-flot-tooltip").html("<p class='h4'>" + item.series.label + "</p>" + y)
+                .css({top: item.pageY+5, left: item.pageX+5})
+                .fadeIn(200);
+        } else {
+            $("#demo-flot-tooltip").hide();
+        }
+
+    });
+
+    $('window').on('resizeEnd', function(){
+        monthActivation();
+        monthActivationDays();
+        useTimeLength();
+    });
+    monthActivation();
+    monthActivationDays();
+    useTimeLength();
+})
+</script>
+{% endblock %}

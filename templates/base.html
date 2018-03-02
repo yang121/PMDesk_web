@@ -1,0 +1,545 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMDesk | 产品经理的工作台</title>
+
+
+    <!--STYLESHEET-->
+    <!--=================================================-->
+
+    <!--Open Sans Font [ OPTIONAL ]-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="/static/css/nifty.min.css" rel="stylesheet">
+
+
+    <!--Nifty Premium Icon [ DEMONSTRATION ]-->
+    <link href="/static/css/demo/nifty-demo-icons.min.css" rel="stylesheet">
+
+
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="/static/css/demo/nifty-demo.min.css" rel="stylesheet">
+
+
+
+    <!--Morris.js [ OPTIONAL ]-->
+    <link href="/static/plugins/morris-js/morris.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+    <!--JAVASCRIPT-->
+    <!--=================================================-->
+
+    <!--Pace - Page Load Progress Par [OPTIONAL]-->
+    <link href="/static/plugins/pace/pace.min.css" rel="stylesheet">
+    <script src="/static/plugins/pace/pace.min.js"></script>
+
+
+    <!--jQuery [ REQUIRED ]-->
+    <script src="/static/js/jquery.min.js"></script>
+
+
+    <!--BootstrapJS [ RECOMMENDED ]-->
+    <script src="/static/js/bootstrap.min.js"></script>
+
+
+    <!--NiftyJS [ RECOMMENDED ]-->
+    <script src="/static/js/nifty.min.js"></script>
+
+
+
+
+
+
+    <!--=================================================-->
+
+    <!--Demo script [ DEMONSTRATION ]-->
+{#    <script src="/static/js/demo/nifty-demo.min.js"></script>#}
+
+
+    <!--Morris.js [ OPTIONAL ]-->
+    <script src="/static/plugins/morris-js/morris.min.js"></script>
+	<script src="/static/plugins/morris-js/raphael-js/raphael.min.js"></script>
+
+
+    <!--Sparkline [ OPTIONAL ]-->
+    <script src="/static/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+
+    <!--Flot Chart [ OPTIONAL ]-->
+    <script src="/static/plugins/flot-charts/jquery.flot.min.js"></script>
+	<script src="/static/plugins/flot-charts/jquery.flot.resize.min.js"></script>
+
+
+    <!--Flot Pie Chart [ OPTIONAL ]-->
+    <script src="/static/plugins/flot-charts/jquery.flot.pie.min.js"></script>
+
+
+    <!--Gauge js [ OPTIONAL ]-->
+    <script src="/static/plugins/gauge-js/gauge.min.js"></script>
+
+
+    <!--Easy Pie Chart [ OPTIONAL ]-->
+    <script src="/static/plugins/easy-pie-chart/jquery.easypiechart.min.js"></script>
+
+    <!--ionicons [ OPTIONAL ]-->
+    <link href="/static/plugins/ionicons/css/ionicons.min.css" rel="stylesheet">
+
+    <!--Other [ OPTIONAL ]-->
+    {% block js %}
+    {% endblock %}
+
+    <style>
+        #mainnav-menu li > a > i:first-child{
+            font-size: 18px !important;
+            text-align: center !important;
+            display: inline-block !important;
+            width: 1.5em !important;
+        }
+    </style>
+
+
+    <!--=================================================
+
+    REQUIRED
+    You must include this in your project.
+
+
+    RECOMMENDED
+    This category must be included but you may modify which plugins or components which should be included in your project.
+
+
+    OPTIONAL
+    Optional plugins. You may choose whether to include it in your project or not.
+
+
+    DEMONSTRATION
+    This is to be removed, used for demonstration purposes only. This category must not be included in your project.
+
+
+    SAMPLE
+    Some script samples which explain how to initialize plugins or components. This category should not be included in your project.
+
+
+    Detailed information and more samples can be found in the document.
+
+    =================================================-->
+
+
+</head>
+
+<!--TIPS-->
+<body>
+    <div id="container" class="effect aside-float aside-bright mainnav-lg">
+
+        <!--NAVBAR-->
+        <!--===================================================-->
+        <header id="navbar">
+            <div id="navbar-container" class="boxed">
+
+                <!--Brand logo & name-->
+                <!--================================-->
+                <div class="navbar-header">
+                    <a href="{% url 'index' %}" class="navbar-brand">
+                        <img src="/static/img/logo.png" alt="PMDesk Logo" class="brand-icon">
+                        <div class="brand-title">
+                            <span class="brand-text">PMDesk <span style="font-size: 10px">Demo</span></span>
+
+                        </div>
+                    </a>
+                </div>
+{#                <span href="javascript:void(0)" class="brand-text mainnav-toggle clearfix" style="float: right; color: white; line-height: 40px; padding-right: 10px"><i class="demo-pli-view-list"></i></span>#}
+                <!--================================-->
+                <!--End brand logo & name-->
+
+                <div class="navbar-content clearfix">
+                    <ul class="nav navbar-top-links pull-left">
+
+                        <!--Navigation toogle button-->
+                        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                        <li class="tgl-menu-btn">
+                            <a class="mainnav-toggle" href="#">
+                                <i class="demo-pli-view-list"></i>
+                            </a>
+                        </li>
+                        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                        <!--End Navigation toogle button-->
+
+
+                    </ul>
+                    <ul class="nav navbar-top-links pull-right">
+
+                        <!--User dropdown-->
+                        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                        {% if request.user.is_authenticated %}
+                        <li id="dropdown-user" class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+                                <span class="pull-right">
+                                    <!--<img class="img-circle img-user media-object" src="img/profile-photos/1.png" alt="Profile Picture">-->
+                                    <i class="demo-pli-male ic-user"></i>
+                                </span>
+                                <div class="username hidden-xs">{{ user.username }}</div>
+                            </a>
+
+
+                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-right panel-default">
+
+{#                                <!-- Dropdown heading  -->#}
+{#                                <div class="pad-all bord-btm">#}
+{#                                    <p class="text-main mar-btm"><span class="text-bold">750GB</span> of 1,000GB Used</p>#}
+{#                                    <div class="progress progress-sm">#}
+{#                                        <div class="progress-bar" style="width: 70%;">#}
+{#                                            <span class="sr-only">70%</span>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+
+
+                                <!-- User dropdown menu -->
+                                <ul class="head-list">
+                                    <li>
+                                        <a href="#">
+                                            <i class="demo-pli-male icon-lg icon-fw"></i> 个人资料
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="badge badge-danger pull-right">9</span>
+                                            <i class="demo-pli-mail icon-lg icon-fw"></i> 消息
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="label label-success pull-right">New</span>
+                                            <i class="demo-pli-gear icon-lg icon-fw"></i> 设置
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="demo-pli-information icon-lg icon-fw"></i> 帮助
+                                        </a>
+                                    </li>
+{#                                    <li>#}
+{#                                        <a href="#">#}
+{#                                            <i class="demo-pli-computer-secure icon-lg icon-fw"></i> Lock screen#}
+{#                                        </a>#}
+{#                                    </li>#}
+                                </ul>
+
+                                <!-- Dropdown footer -->
+                                <div class="pad-all text-right">
+                                    <a href="{% url 'sign_out' %}" class="btn btn-primary">
+                                        <i class="demo-pli-unlock"></i> 登出
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                        <!--End user dropdown-->
+                        {% else %}
+                            <li class="text-right"><a href="{% url 'sign_in' %}">登录</a></li>
+                            <li class="text-right"><a href="{% url 'sign_up' %}">注册</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+            </div>
+
+        </header>
+        <!--===================================================-->
+        <!--END NAVBAR-->
+
+        <div class="boxed">
+        {% block content %}
+        {% endblock %}
+            <!--MAIN NAVIGATION-->
+            <!--===================================================-->
+            <nav id="mainnav-container">
+                <div id="mainnav">
+
+                    <!--Menu-->
+                    <!--================================-->
+                    <div id="mainnav-menu-wrap">
+                        <div class="nano">
+                            <div class="nano-content" style="padding-top: 0">
+
+                                <ul id="mainnav-menu" class="list-group">
+
+						            <!--Category name-->
+						            <li class="list-header">工作看板</li>
+
+						            <!--Menu list item-->
+
+						            <!--Menu list item-->
+						            <li id="acquisition-menu">
+						                <a href="#">
+						                    <i class="ion-ios-pulse-strong"></i>
+						                    <span class="menu-title">
+												<strong>新增</strong>
+											</span>
+											<i class="arrow"></i>
+						                </a>
+
+						                <!--Submenu-->
+						                <ul class="collapse">
+						                    <li id="place-impressions">
+                                                <a href="{% url 'place_impressions' %}">渠道曝光</a>
+                                            </li>
+											<li id="place-quality">
+                                                <a class="need-auth" href="{% url 'place_quality' %}">渠道质量</a>
+                                            </li>
+						                </ul>
+						            </li>
+
+						            <li id="activation-menu">
+						                <a class="need-auth" href="{% url 'activation' %}">
+						                    <i class="ion-ios-body"></i>
+						                    <span class="menu-title">
+												<strong>活跃</strong>
+											</span>
+						                </a>
+
+						            </li>
+						            <li id="retention-menu">
+						                <a class="need-auth" href="{% url 'retention' %}">
+						                    <i class="ion-archive"></i>
+						                    <span class="menu-title">
+												<strong>留存</strong>
+											</span>
+						                </a>
+						            </li>
+						            <li id="revenue-menu">
+						                <a class="need-auth" href="{% url 'revenue' %}">
+						                    <i class="ion-social-usd"></i>
+						                    <span class="menu-title">
+												<strong>收入</strong>
+											</span>
+						                </a>
+						            </li>
+						            <li id="refer-menu">
+						                <a href="#">
+						                    <i class="ion-ios-redo"></i>
+						                    <span class="menu-title">
+												<strong>自传播</strong>
+											</span>
+                                            <i class="arrow"></i>
+						                </a>
+                                        <!--Submenu-->
+						                <ul class="collapse">
+						                    <li id="initiative-refer">
+                                                <a class="need-auth" href="{% url 'initiative_refer' %}">主动传播</a>
+                                            </li>
+											<li id="passive-refer">
+                                                <a class="need-auth" href="{% url 'passive_refer' %}">被动传播</a>
+                                            </li>
+						                </ul>
+						            </li>
+
+						            <li class="list-divider"></li>
+
+						            <!--Category name-->
+						            <li class="list-header">实验室</li>
+
+						            <!--Menu list item-->
+						            <li id="market-menu">
+						                <a href="#">
+						                    <i class="ion-ios-flask"></i>
+						                    <span class="menu-title"><strong>市场研究</strong></span>
+											<i class="arrow"></i>
+						                </a>
+
+						                <!--Submenu-->
+						                <ul class="collapse">
+                                            <li id="market-competitor">
+                                                <a class="need-auth" href="{% url 'market_competitor' %}">竞品分析</a>
+                                            </li>
+						                    <li id="market-ranking">
+                                                <a class="need-auth" href="{% url 'market_ranking' %}">排行情况</a>
+                                            </li>
+						                </ul>
+						            </li>
+
+						            <!--Menu list item-->
+						            <li id="user-menu">
+						                <a href="#">
+						                    <i class="ion-ios-people"></i>
+						                    <span class="menu-title"><strong>用户研究</strong></span>
+											<i class="arrow"></i>
+						                </a>
+
+						                <!--Submenu-->
+						                <ul class="collapse">
+						                    <li id="user-portrait"><a class="need-auth" href="{% url 'user_portrait' %}">用户画像</a></li>
+											<li id="user-behavior"><a class="need-auth" href="{% url 'user_behavior' %}">行为分析</a></li>
+											<li id="user-group"><a class="need-auth" href="{% url 'user_group' %}">用户分群</a></li>
+						                </ul>
+						            </li>
+
+						            <!--Menu list item-->
+						            <li id="event-menu">
+						                <a href="#">
+						                    <i class="ion-ios-film"></i>
+						                    <span class="menu-title"><strong>事件分析</strong></span>
+                                            <i class="arrow"></i>
+						                </a>
+
+                                        <!--Submenu-->
+						                <ul class="collapse">
+						                    <li id="event-performance">
+                                                <a class="need-auth" href="{% url 'event_performance' %}">数据表现</a>
+                                            </li>
+						                    <li id="event-behavior-path">
+                                                <a class="need-auth" href="{% url 'event_behavior_path' %}">行为路径</a>
+                                            </li>
+											<li id="event-relation">
+                                                <a class="need-auth" href="{% url 'event_relation' %}">关联分析</a>
+                                            </li>
+						                </ul>
+						            </li>
+
+						            <!--Menu list item-->
+						            <li id="version-menu">
+						                <a href="#">
+						                    <i class="ion-social-vimeo"></i>
+						                    <span class="menu-title"><strong>版本分析</strong></span>
+											<i class="arrow"></i>
+						                </a>
+
+						                <!--Submenu-->
+						                <ul class="collapse">
+						                    <li id="version-info">
+                                                <a class="need-auth" href="{% url 'version_info' %}">版本信息</a>
+                                            </li>
+											<li id="version-effect">
+                                                <a class="need-auth" href="{% url 'version_effect' %}">成效分析</a>
+                                            </li>
+						                </ul>
+						            </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--================================-->
+                    <!--End menu-->
+                </div>
+            </nav>
+            <!--===================================================-->
+            <!--END MAIN NAVIGATION-->
+
+        </div>
+
+
+
+        <!-- FOOTER -->
+        <!--===================================================-->
+        <footer id="footer">
+
+            <!-- Visible when footer positions are fixed -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+{#            <div class="show-fixed pull-right">#}
+{#                You have <a href="#" class="text-bold text-main"><span class="label label-danger">3</span> pending action.</a>#}
+{#            </div>#}
+
+
+
+            <!-- Visible when footer positions are static -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <div class="hide-fixed pull-right pad-rgt">
+                <strong>from</strong>: YANG
+            </div>
+
+
+
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <!-- Remove the class "show-fixed" and "hide-fixed" to make the content always appears. -->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+            <p class="pad-lft">&#0169; 2018 PMDesk.top</p>
+
+
+
+        </footer>
+        <!--===================================================-->
+        <!-- END FOOTER -->
+
+
+        <!-- SCROLL PAGE BUTTON -->
+        <!--===================================================-->
+        <button class="scroll-top btn">
+            <i class="pci-chevron chevron-up"></i>
+        </button>
+        <!--===================================================-->
+
+
+
+    </div>
+    <!--===================================================-->
+    <!-- END OF CONTAINER -->
+
+    <!-- MODALS -->
+    <div class="modal fade" id="login-first" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pci-cross pci-circle"></i></button>
+                    <h4 class="modal-title" id="myModalLabel">请登录</h4>
+                </div>
+                <div class="modal-body">此功能需登录你的账号</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button id="jump-login" type="button" class="btn btn-primary">登录</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+{#    <div class="modal-dialog">#}
+{#        <div class="modal-content">#}
+{#            <div class="modal-header">#}
+{#                <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>#}
+{#                <h4 class="modal-title">请登录</h4>#}
+{#            </div>#}
+{##}
+{#            <div class="modal-body">#}
+{#                <p>此功能需登录你的账号</p>#}
+{#            </div>#}
+{##}
+{#            <div class="modal-footer">#}
+{#                <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>#}
+{#                <button class="btn btn-primary" type="button">Save changes</button>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+    <!-- END OF MODALS -->
+
+
+</body>
+{% if request.user.is_authenticated %}
+{% else %}
+<script>
+    $('.need-auth').click(function(){jumpLogin(this);return false});
+    function jumpLogin(self) {
+        var url = $(self).attr('href');
+        console.log(url);
+        $('#login-first').modal({keyboard: true});
+        $('#jump-login').click(function () {window.location.href=url;});
+    }
+</script>
+{% endif %}
+</html>

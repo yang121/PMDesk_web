@@ -1,0 +1,90 @@
+{% extends "account/login-layout.html" %}
+
+{% block content %}
+<div id="container" class="cls-container">
+
+    <!-- BACKGROUND IMAGE -->
+    <!--===================================================-->
+    <div id="bg-overlay"></div>
+
+
+    <!-- LOGIN FORM -->
+    <!--===================================================-->
+    <div class="cls-content">
+        <div class="cls-content-sm panel">
+            <div class="panel-body">
+                <div class="mar-ver pad-btm">
+                    <h1 class="h2">欢迎登录<strong>PMDesk</strong></h1>
+                    <a href="#" onclick="(function back() {window.history.back();})()">返回 >></a>
+                </div>
+                {% if form.errors %}
+                <div class="panel-alert form-group">
+                    <div class="alert-wrap in">
+                        <div class="alert alert-danger" role="alert">
+                            <div class="media">
+                            {% if form.errors.username.0 %}
+                                {{ form.errors.username.0 }}
+                            {% elif form.errors.password.0 %}
+                                {{ form.errors.password.0 }}
+                            {% elif form.non_field_errors %}
+                                {{ form.non_field_errors.0 }}
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                    {% if next %}
+                        {% if user.is_authenticated %}
+                        <p>Your account doesn't have access to this page. To proceed,
+                        please login with an account that has access.</p>
+                        {% else %}
+                        <p>登录后即可浏览当前页面.</p>
+                        {% endif %}
+                    {% endif %}
+
+                    <form method="post" action="{% url 'sign_in' %}" novalidate>
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            {{ form.username }}
+{#                            {% if form.errors.username %}#}
+{#                            <div class="panel-alert form-group">#}
+{#                                <div class="alert-wrap in">#}
+{#                                    <div class="alert alert-danger" role="alert">#}
+{#                                        <div class="media">.</div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            {% endif %}#}
+                        </div>
+                        <div class="form-group">
+                            {{ form.password }}
+{#                            {% if form.errors.password %}#}
+{#                            <div class="panel-alert form-group">#}
+{#                                <div class="alert-wrap in">#}
+{#                                    <div class="alert alert-danger" role="alert">#}
+{#                                        <div class="media">{{ form.errors.password.0 }}.</div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            {% endif %}#}
+                        </div>
+                        {#<div class="checkbox pad-btm text-left">#}
+                        {#    <input id="demo-form-checkbox" class="magic-checkbox" type="checkbox">#}
+                        {#    <label for="demo-form-checkbox">Remember me</label>#}
+                        {#</div>#}
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">登录</button>
+                        <input type="hidden" name="next" value="{{ next }}" />
+                    </form>
+                    <div class="pad-all">
+                        <a href="{% url 'password_reminder' %}" class="btn-link mar-rgt">忘记密码 ?</a>
+                        <a href="{% url 'sign_up' %}" class="btn-link mar-lft">创建账户</a>
+                    </div>
+		        </div>
+		    </div>
+		</div>
+
+</div>
+{% endblock %}
