@@ -19,7 +19,7 @@ class SignUpForm(UserCreationForm):
         widget=PasswordInput(attrs={"placeholder": "再次输入密码", "class": "form-control"}),
         strip=False,
         # help_text=_("Enter the same password as before, for verification."),
-        error_messages={'required': '请输入确认密码', 'invalid': '密码格式错误','password_mismatch': _("两次输入的密码不一致.")}
+        error_messages={'required': '请再次输入密码，确保无误','password_mismatch': _("两次输入的密码不一致.")}
     )
 
 
