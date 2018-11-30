@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
+
+@login_required
 def market_competitor(request):
     context = {
         'menu': ['market-menu', '市场研究'],
@@ -8,6 +11,7 @@ def market_competitor(request):
     return render(request, 'data-not-accessed.html', context)
 
 
+@login_required
 def market_ranking(request):
     context = {
         'menu': ['market-menu', '市场研究'],
@@ -16,6 +20,7 @@ def market_ranking(request):
     return render(request, 'data-not-accessed.html', context)
 
 
+@login_required
 def user_portrait(request):
     context = {
         'menu': ['user-menu', '用户研究'],
@@ -24,6 +29,7 @@ def user_portrait(request):
     return render(request, 'data-not-accessed.html', context)
 
 
+@login_required
 def user_behavior(request):
     context = {
         'menu': ['user-menu', '用户研究'],
@@ -32,6 +38,7 @@ def user_behavior(request):
     return render(request, 'data-not-accessed.html', context)
 
 
+@login_required
 def user_group(request):
     context = {
         'menu': ['user-menu', '用户研究'],
@@ -40,6 +47,7 @@ def user_group(request):
     return render(request, 'data-not-accessed.html', context)
 
 
+@login_required
 def event_performance(request):
     context = {
         'menu': ['event-menu', '事件分析'],
@@ -48,6 +56,7 @@ def event_performance(request):
     return render(request, 'data-not-accessed.html', context)
 
 
+@login_required
 def event_behavior_path(request):
     context = {
         'menu': ['event-menu', '事件分析'],
@@ -56,6 +65,7 @@ def event_behavior_path(request):
     return render(request, 'data-not-accessed.html', context)
 
 
+@login_required
 def event_relation(request):
     context = {
         'menu': ['event-menu', '事件分析'],
@@ -64,6 +74,7 @@ def event_relation(request):
     return render(request, 'data-not-accessed.html', context)
 
 
+@login_required
 def version_info(request):
     context = {
         'menu': ['version-menu', '事件分析'],
@@ -72,6 +83,7 @@ def version_info(request):
     return render(request, 'data-not-accessed.html', context)
 
 
+@login_required
 def version_effect(request):
     context = {
         'menu': ['version-menu', '事件分析'],

@@ -15,24 +15,33 @@ Including another URLconf
 """
 from django.urls import path
 from account import views
-from django.contrib.auth.views import login, password_reset, password_reset_done, password_reset_confirm, \
-    password_reset_complete, logout_then_login
+
+from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetDoneView, \
+    PasswordResetCompleteView, logout_then_login, PasswordResetConfirmView
+
 from account.forms import SignInForm, PasswordRemindForm
 
+class Login(LoginView):
+    template_name = 'account/sign-in.html'
+    authentication_form = SignInForm
+
+class PasswordReset(PasswordResetView):
+    template_name = 'account/password-reminder.html'
+    # email_template_name = 'account/password-reset-email.html'
+    subject_template_name = 'account/password-reset-subject.txt'
+    form_class = PasswordRemindForm
+    from_email = 'PMDesk'
+
+    html_email_template_name = 'account/password-reset-email.html'
+
+
 urlpatterns = [
-    path('sign-in/', login, kwargs={'template_name': 'account/sign-in.html', 'authentication_form': SignInForm}, name='sign_in'),
+    path('sign-in/', Login.as_view(), name='sign_in'),
     path('sign-out/', logout_then_login, name='sign_out'),
     path('sign-up/', views.sign_up, name='sign_up'),
-    path('password-reset-done/', password_reset_done, name='password_reset_done'),
-    path('password-reset-confirm/<uidb64>/<token>/', password_reset_confirm, name='password_reset_confirm'),
-    path('password-reset-complete/', password_reset_complete, name='password_reset_complete'),
-    path('password-remind/', password_reset, name='password_reminder',
-         kwargs={
-             'template_name': 'account/password-reminder.html',
-             'email_template_name': 'account/password-reset-email.html',
-             'subject_template_name': 'account/password-reset-subject.txt',
-             'password_reset_form': PasswordRemindForm,
-             'from_email': 'lzyang121@qq.com',
-         }),
+    path('password-reset-done/', PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('password-reset-complete/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('password-remind/', PasswordReset.as_view(), name='password_reminder'),
 
 ]

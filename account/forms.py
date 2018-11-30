@@ -67,3 +67,4 @@ class PasswordRemindForm(PasswordResetForm):
         widget=EmailInput(attrs={'autofocus': True, 'class': 'form-control', 'placeholder': 'Email'}),
         required=True
     )
+
