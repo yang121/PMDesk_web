@@ -26,3 +26,5 @@ def sign_up(request):
 
     return render(request, 'account/sign-up.html', context)
 
+def tbk(request):
+    return render(request, 'root.txt')
