@@ -25,7 +25,7 @@ SECRET_KEY = '@$8kd5kf-hgiluq99*!)=1v64ma$h!#$0b9kms1u%3bj#y+#u$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['pmdesk.top','www.pmdesk.top']
 
 
 # Application definition
@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'PMDesk_web.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',   # 修改为mysql
+        'NAME': 'pmdesk',                   # 修改数据库名
+        'USER': 'root',                 
+        'PASSWORD':'',
+        'HOST': '127.0.0.1',
+        'PORT': 3306
     }
 }
 
@@ -120,6 +124,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+# STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (

@@ -24,5 +24,5 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('lab/', include('lab.urls')),
-
+    path('root.txt', views.tbk),
 ]

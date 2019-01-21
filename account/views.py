@@ -23,10 +23,8 @@ def sign_up(request):
     context = {
         'form': form,
     }
-    print(form.non_field_errors)
-    print(form.error_messages)
-    print(form.errors)
-    # print([form._errors[i] for i in form._errors])
 
     return render(request, 'account/sign-up.html', context)
 
+def tbk(request):
+   return render(request, 'root.txt')
